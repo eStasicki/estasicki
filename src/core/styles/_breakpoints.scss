@@ -1,0 +1,34 @@
+// Screen size variables
+$xs: 575.99px;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+
+// Mixins
+@mixin xs { @media (max-width: #{$xs}) {
+    @content;
+  }
+}
+
+
+@mixin sm { @media (min-width: #{$sm}) {
+    @content;
+  }
+}
+
+
+@mixin md { @media (min-width: #{$md}) {
+    @content;
+  }
+}
+
+@mixin lg { @media (min-width: #{$lg}) {
+    @content;
+  }
+}
+
+@mixin xl { @media (min-width: #{$xl}) {
+  @content;
+  }
+}

@@ -1,37 +1,51 @@
 import React, { Component } from "react"
-import { getPosts } from "./getData"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+
+import Slider from "react-slick"
+
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+
+import styles from "./Homepage.module.scss"
+
+import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons"
 
 class HomePage extends Component {
-  state = {
-    posts: [],
-  }
-
-  componentDidMount() {
-    let postUrl = `${getPosts}`
-    fetch(postUrl)
-      .then((data) => data.json())
-      .then((data) => {
-        this.setState({
-          posts: data,
-        })
-      })
-  }
-
   render() {
-    let listposts = this.state.posts.map((post, index) => {
-      return (
-        <div key={index}>
-          <h4>{post.title.rendered}</h4>
-          <p dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
-        </div>
-      )
-    })
-
+    var slickSettings = {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      fade: true,
+      cssEase: "linear",
+      nextArrow: <FontAwesomeIcon icon={faAngleRight} />,
+      prevArrow: <FontAwesomeIcon icon={faAngleLeft} />,
+    }
     return (
-      <article>
-        <h1>Posts</h1>
-        {listposts}
-      </article>
+      <div className={styles["carousel-wrapper"]}>
+        <Slider {...slickSettings}>
+          <div>
+            <h3>1</h3>
+          </div>
+          <div>
+            <h3>2</h3>
+          </div>
+          <div>
+            <h3>3</h3>
+          </div>
+          <div>
+            <h3>4</h3>
+          </div>
+          <div>
+            <h3>5</h3>
+          </div>
+          <div>
+            <h3>6</h3>
+          </div>
+        </Slider>
+      </div>
     )
   }
 }

@@ -1,7 +1,42 @@
+@import 'App.module.scss';
+
 .header {
-  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $color-white;
+  height: 200px;
+  padding: 0 100px;
 
   ul {
     display: flex;
+    li {
+      font-size: 18px;
+      text-transform: uppercase;
+      padding: 0 15px;
+      a {
+        color: $color-primary;
+        &.active {
+          font-weight: 700;
+        }
+      }
+    }
   }
+
+  .logo {
+    font-size: 48px;
+    line-height: 1;
+    color: $color-primary;
+    font-weight: 600;
+    a {
+      display: flex;
+      align-items: flex-end;
+      flex-direction: column;
+    }
+    span {
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+
 }

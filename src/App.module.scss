@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600,700,900&display=swap&subset=latin-ext');
+
+@import "core/styles/colors";
+@import "core/styles/reset";
+@import "core/styles/breakpoints";
+
+// VW Mixin
+
+@function vw($target) { 
+  $vw-context: (1920*.01) * 1px;
+  @return ($target/$vw-context) * 1vw;
+}
+
+body {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+@include md {
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: url('/images/main_bg.jpg') repeat;
+    background-size: cover;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  position: relative;
+  box-shadow: 0px 0px 100px 0px rgba(0,0,0, 0.75);
+  @include xl {
+    width: 1290px;
+  }
+}
+
+.container-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  background-color: $color-white;
+  height: 765px;
+}
