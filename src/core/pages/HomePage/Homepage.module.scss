@@ -31,9 +31,9 @@
       height: auto;
       font-size: 72px;
       z-index: 1;
-      color: rgba($color-white, 0.5);
+      color: rgba($color-white, 0.8);
       @include xl {
-        font-size: 134px;
+        font-size: 78px;
       }
       &::before {
         display: none;
