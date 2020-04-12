@@ -1,0 +1,24 @@
+{
+  "MenuItems": [
+    {
+      "title": "Strona główna",
+      "link": "/"
+    },
+    {
+      "title": "Umiejętności",
+      "link": "/skills"
+    },
+    {
+      "title": "Projekty",
+      "link": "/projects"
+    },
+    {
+      "title": "Blog",
+      "link": "/blog"
+    },
+    {
+      "title": "Kontakt",
+      "link": "/contact"
+    }
+  ]
+}
