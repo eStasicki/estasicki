@@ -25,7 +25,7 @@ class App extends Component {
     loading: true,
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.setState({
       loading: false,
     })
@@ -35,14 +35,12 @@ class App extends Component {
     return (
       <ApolloProvider client={client}>
         <BrowserRouter>
-          <div
-            className={
-              styles[this.state.loading ? "container-loading" : "container"]
-            }
-          >
-            {this.state.loading ? (
+          {this.state.loading ? (
+            <div className={styles[("container", "container-loading")]}>
               <Spinner />
-            ) : (
+            </div>
+          ) : (
+            <div className={styles.container}>
               <>
                 <Header />
                 <div className={styles.wrapper}>
@@ -55,8 +53,8 @@ class App extends Component {
                   </Switch>
                 </div>
               </>
-            )}
-          </div>
+            </div>
+          )}
         </BrowserRouter>
       </ApolloProvider>
     )

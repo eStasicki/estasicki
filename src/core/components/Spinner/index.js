@@ -1,22 +1,21 @@
-import React, { Component } from "react"
+import React from "react"
 
 import styles from "./Spinner.module.scss"
 
-class Spinner extends Component {
-  render() {
-    return (
-      <div className={styles.spinnerIcon}>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    )
-  }
-}
+import classNames from "classnames/bind"
+const cx = classNames.bind(styles)
+
+const Spinner = ({ dark }) => (
+  <div className={cx("spinnerIcon", dark ? "spinnerIconDarken" : "")}>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+)
 
 export default Spinner

@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 import Slider from "react-slick"
 
+import Spinner from "core/components/Spinner"
+
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
@@ -42,7 +44,12 @@ class HomePage extends Component {
     return (
       <Query query={GET_PROJECTS_FRONTPAGE}>
         {({ loading, error, data }) => {
-          if (loading) return false
+          if (loading)
+            return (
+              <div className={styles.carouselLoading}>
+                <Spinner dark />
+              </div>
+            )
           if (error) return false
           return (
             <div className={styles["carousel-wrapper"]}>
