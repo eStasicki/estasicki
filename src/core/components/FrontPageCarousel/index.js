@@ -63,11 +63,16 @@ class FrontPageCarousel extends Component {
             <div className={styles["wrapper"]}>
               <Slider {...slickSettings}>
                 {data.projectsPostType.nodes.map((carouselItem, key) => (
-                  <img
-                    src={carouselItem.featuredImage.sourceUrl}
-                    alt={carouselItem.title}
-                    key={key}
-                  />
+                  <>
+                    <img
+                      src={carouselItem.featuredImage.sourceUrl}
+                      alt={carouselItem.title}
+                      key={key}
+                    />
+                    <div className={styles.projectInfo}>
+                      <h1>{carouselItem.title}</h1>
+                    </div>
+                  </>
                 ))}
               </Slider>
             </div>
