@@ -25,13 +25,11 @@ const GET_HEADER_MAIN_QUERY = gql`
 `
 
 class Header extends Component {
-  componentDidMount() {}
-
   render() {
     return (
       <Query query={GET_HEADER_MAIN_QUERY}>
         {({ loading, error, data }) => {
-          if (loading) return <div>Loading...</div>
+          if (loading) return false
           if (error) return console.log(error)
           return (
             <div className={styles.header}>

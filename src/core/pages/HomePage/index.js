@@ -1,4 +1,6 @@
 import React, { Component } from "react"
+import { Query } from "react-apollo"
+import gql from "graphql-tag"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 import Slider from "react-slick"
@@ -9,6 +11,20 @@ import "slick-carousel/slick/slick-theme.css"
 import styles from "./Homepage.module.scss"
 
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons"
+
+const GET_PROJECTS_FRONTPAGE = gql`
+  {
+    projectsPostType {
+      nodes {
+        title
+        slug
+        featuredImage {
+          sourceUrl(size: PROJECT_IMAGE_MEDIUM)
+        }
+      }
+    }
+  }
+`
 
 class HomePage extends Component {
   render() {
@@ -24,28 +40,25 @@ class HomePage extends Component {
       prevArrow: <FontAwesomeIcon icon={faAngleLeft} />,
     }
     return (
-      <div className={styles["carousel-wrapper"]}>
-        <Slider {...slickSettings}>
-          <div>
-            <h3>1</h3>
-          </div>
-          <div>
-            <h3>2</h3>
-          </div>
-          <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div>
-        </Slider>
-      </div>
+      <Query query={GET_PROJECTS_FRONTPAGE}>
+        {({ loading, error, data }) => {
+          if (loading) return false
+          if (error) return false
+          return (
+            <div className={styles["carousel-wrapper"]}>
+              <Slider {...slickSettings}>
+                {data.projectsPostType.nodes.map((carouselItem, key) => (
+                  <img
+                    src={carouselItem.featuredImage.sourceUrl}
+                    alt={carouselItem.title}
+                    key={key}
+                  />
+                ))}
+              </Slider>
+            </div>
+          )
+        }}
+      </Query>
     )
   }
 }
