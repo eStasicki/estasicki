@@ -17,7 +17,7 @@ import Spinner from "./core/components/Spinner"
 import styles from "App.module.scss"
 
 const client = new ApolloClient({
-  uri: "http://backend.estasicki.pl/graphql",
+  uri: "https://backend.estasicki.pl/graphql",
 })
 
 class App extends Component {
