@@ -1,9 +1,10 @@
 import React, { Component } from "react"
-import { Route, Switch } from "react-router-dom"
+import { BrowserRouter, Route, Switch } from "react-router-dom"
+
+import ApolloClient from "apollo-boost"
+import { ApolloProvider } from "react-apollo"
 
 import Header from "core/components/Header"
-
-import { getSettings } from "headless-settings"
 
 import HomePage from "core/pages/HomePage"
 import Skills from "core/pages/Skills"
@@ -15,49 +16,49 @@ import Spinner from "./core/components/Spinner"
 
 import styles from "App.module.scss"
 
-const datas = getSettings
+const client = new ApolloClient({
+  uri: "http://backend.estasicki.pl/graphql",
+})
 
 class App extends Component {
   state = {
     loading: true,
-    mainApplicationLink: null,
-    applicationTitle: null,
-    menu: [],
   }
 
   async componentDidMount() {
-    const url = datas
-    const response = await fetch(url)
-    const data = await response.json()
     this.setState({
-      applicationTitle: data.acf.logo,
-      mainApplicationLink: data.acf.main_application_link,
       loading: false,
     })
   }
 
   render() {
     return (
-      <div
-        className={styles[this.state.loading ? "container-loading" : "container"]}
-      >
-        {this.state.loading ? (
-          <Spinner />
-        ) : (
-          <>
-            <Header />
-            <div className={styles.wrapper}>
-              <Switch>
-                <Route exact path="/" component={HomePage} />
-                <Route path="/skills" component={Skills} />
-                <Route path="/projects" component={Projects} />
-                <Route path="/blog" component={Blog} />
-                <Route path="/contact" component={Contact} />
-              </Switch>
-            </div>
-          </>
-        )}
-      </div>
+      <ApolloProvider client={client}>
+        <BrowserRouter>
+          <div
+            className={
+              styles[this.state.loading ? "container-loading" : "container"]
+            }
+          >
+            {this.state.loading ? (
+              <Spinner />
+            ) : (
+              <>
+                <Header />
+                <div className={styles.wrapper}>
+                  <Switch>
+                    <Route exact path="/" component={HomePage} />
+                    <Route path="/skills" component={Skills} />
+                    <Route path="/projects" component={Projects} />
+                    <Route path="/blog" component={Blog} />
+                    <Route path="/contact" component={Contact} />
+                  </Switch>
+                </div>
+              </>
+            )}
+          </div>
+        </BrowserRouter>
+      </ApolloProvider>
     )
   }
 }
